@@ -9,10 +9,13 @@ use \App\Entity\Vaga;
 $obVaga = new Vaga;
 
 //Validação do POST
-// if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'], $_FILES['arquivo'])) {
-    if (isset($_FILES['imagem'])) {
-    echo "<pre>"; print_r($_FILES); echo "</pre>"; exit;
+// if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'], $_FILES['imagem'])) {
+if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'])) {
+    // if (isset($_FILES['imagem'])) {
+    // echo "<pre>"; print_r($_FILES); echo "</pre>"; exit;
+    
 
+    //DADOS
     $obVaga->nome    = $_POST['nome'];
     $obVaga->descricao  = $_POST['descricao'];
     $obVaga->preco  = $_POST['preco'];

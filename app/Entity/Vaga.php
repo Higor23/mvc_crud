@@ -25,7 +25,6 @@ class Vaga
      */
     public $descricao;
 
-
     /**
      * Preço do produto
      * @var double
@@ -45,9 +44,47 @@ class Vaga
     public $data;
 
     /**
+     * Nome do arquivo sem extensão
+     * @@var string
+     */
+    public $name;
+
+    /**
+     * Extensão do arquivo (sem ponto)
+     * @var string
+     */
+    public $extension;
+
+    /**
+     * Tipo do arquivo
+     * @@var string
+     */
+    public $type;
+
+    /**
+     * Nome temporário/caminho do arquivo
+     * @@var string
+     */
+    public $tempName;
+
+    /**
+     * Código de erro do upload
+     * @@var integer
+     */
+    public $error;
+
+    /**
+     * Tamanho do arquivo
+     * @@var string
+     */
+    public $size;
+
+    /**
      * Método responsável por cadastrar o produto
      * @return boolean
      */
+
+
     public function cadastrar()
     {
 
