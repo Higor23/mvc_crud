@@ -1,12 +1,12 @@
 <main>
 
 
-    <h2 class="mt-3">Excluir Vaga</h2>
+    <h2 class="mt-3">Excluir Produto</h2>
 
     <form action="" method="post">
 
         <div class="form-group">
-            <p>Você deseja realmente excluir a vaga <strong><?= $obVaga->titulo?>?</strong></p>
+            <p>Você deseja realmente excluir o produto? <strong><?= $obVaga->titulo?>?</strong></p>
         </div>
         <div class="form-group">
             <a href="index.php"><button type="button" class="btn btn-success">Cancelar</button></a>

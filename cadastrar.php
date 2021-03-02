@@ -32,17 +32,12 @@ if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco']
     }
 
     //ALTERA O NOME DO ARQUIVO
-    // $obVaga->setName('novo-arquivo-com-nome-alterado');
-
     $obUpload->generateNewName();
 
     //MOVE OS ARQUIVOS DE UPLOAD
     $sucesso = $obUpload->upload(__DIR__ . '/files', false);
     $obVaga->imagem    = $obUpload->name;
-    // echo "<pre>";
-    // print_r($obVaga);
-    // echo "</pre>";
-    // exit;
+ 
     if ($sucesso) {
         $obVaga->cadastrar();
         header('location: index.php?status=success');
