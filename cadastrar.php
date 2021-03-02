@@ -44,8 +44,6 @@ if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco']
     // echo "</pre>";
     // exit;
     if ($sucesso) {
-        // echo 'Arquivo '.$obVaga->getBasename().' enviado com sucesso!';
-        
         $obVaga->cadastrar();
         header('location: index.php?status=success');
         exit();

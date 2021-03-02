@@ -5,7 +5,7 @@ namespace App\Entity;
 class Upload {
         /**
      * Nome do arquivo sem extensão
-     * @@var string
+     * @var string
      */
     public $name;
 
@@ -62,11 +62,10 @@ class Upload {
         $this->name = $info['filename'];
         $this->extension = $info['extension'];
         }
-
     }
 
     public function generateNewName() {
-        $this->name = time().'-'.rand(100000,999999).'-'.uniqid();
+        $this->name = time().'-'.rand(100000,999999).'-'.uniqid().'.'.$this->extension;
     }
 
 
@@ -120,7 +119,7 @@ class Upload {
         $duplicates = $this->duplicates > 0 ? '-' . $this->duplicates : '';
 
         //RETORNA O NOME COMPLETO
-        return $this->name . $duplicates . $extension;
+        return $this->name . $duplicates;
     }
 
     /**
