@@ -2,17 +2,17 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-use \App\Entity\Vaga;
+use \App\Entity\Produto;
 
 if(!isset($_GET['id']) or !is_numeric($_GET['id'])){
     header('location: index.php?status=error');
     exit;
 }
 
-$obVaga = Vaga::getVaga($_GET['id']);
+$obProduto = Produto::getProduto($_GET['id']);
 
-//VALIDAÇÃO DA VAGA
-if(!$obVaga instanceof Vaga){
+//VALIDAÇÃO DA PRODUTO
+if(!$obProduto instanceof Produto){
     header('location: index.php?status=error');
     // exit
 }
@@ -21,7 +21,7 @@ if(!$obVaga instanceof Vaga){
 //VALIDAÇÃO DO POST
 if (isset($_POST['excluir'])) {
 
-    $obVaga->excluir();
+    $obProduto->excluir();
     
     header('location: index.php?status=success');
     exit();

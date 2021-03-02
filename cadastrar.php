@@ -5,25 +5,23 @@ require __DIR__ . '/vendor/autoload.php';
 
 define('TITLE', 'Cadastrar Produto');
 
-use \App\Entity\Vaga;
+use \App\Entity\Produto;
 use \App\Entity\Upload;
 
 //INSTÂNCIA DO PRODUTO
-$obVaga = new Vaga;
+$obProduto = new Produto;
 
 
 //Validação do POST
 if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'])) {
 
     //INSTÂNCIA DE UPLOAD E CADASTRO
-    // $obVaga = new Vaga();
-
     //DADOS
-    $obVaga->nome    = $_POST['nome'];
-    $obVaga->descricao  = $_POST['descricao'];
-    $obVaga->preco  = $_POST['preco'];
-    $obVaga->status     = $_POST['status'];
-    $obVaga->imagem    = '';
+    $obProduto->nome    = $_POST['nome'];
+    $obProduto->descricao  = $_POST['descricao'];
+    $obProduto->preco  = $_POST['preco'];
+    $obProduto->status     = $_POST['status'];
+    $obProduto->imagem    = '';
 
     if (isset($_FILES['imagem'])) {
 
@@ -36,10 +34,10 @@ if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco']
 
     //MOVE OS ARQUIVOS DE UPLOAD
     $sucesso = $obUpload->upload(__DIR__ . '/files', false);
-    $obVaga->imagem    = $obUpload->name;
+    $obProduto->imagem    = $obUpload->name;
  
     if ($sucesso) {
-        $obVaga->cadastrar();
+        $obProduto->cadastrar();
         header('location: index.php?status=success');
         exit();
     }

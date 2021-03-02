@@ -3,10 +3,23 @@
     text-align: center;
 }
 
-.btn-comprar {
-    margin-left: 30px;
-}
-
 .card {
     margin: 10px;
+}
+
+.div-image-card {
+    display: flex;
+    justify-content: center;
+}
+
+.image-card {
+    object-fit: contain;
+    height: 100px;
+}
+
+.image {
+    height: 150px;
+    align-items: center;
+    text-align: center;
+    padding: 5px;
 }

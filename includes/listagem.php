@@ -15,25 +15,25 @@
     }
 
     $resultados = '';
-    foreach($vagas as $vaga){
+    foreach($produtos as $produto){
         $resultados .= '<tr>
-                            <td>'.$vaga->id.'</td>
-                            <td>'.$vaga->nome.'</td>
-                            <td>'.$vaga->descricao.'</td>
-                            <td>'.($vaga->status == 's' ? 'Ativo' : 'Inativo').'</td>
-                            <td>'.$vaga->preco.'</td>
-                            <td>'.date('d/m/Y à\s H:i:s', strtotime($vaga->data)).'</td>
+                            <td>'.$produto->id.'</td>
+                            <td>'.$produto->nome.'</td>
+                            <td>'.$produto->descricao.'</td>
+                            <td>'.($produto->status == 's' ? 'Ativo' : 'Inativo').'</td>
+                            <td>'.$produto->preco.'</td>
+                            <td>'.date('d/m/Y à\s H:i:s', strtotime($produto->data)).'</td>
                             <td>
-                                <a href="editar.php?id='.$vaga->id.'"><button type="button" class="btn btn-primary">Editar</button></a>
+                                <a href="editar.php?id='.$produto->id.'"><button type="button" class="btn btn-primary">Editar</button></a>
                                 
-                                <a href="excluir.php?id='.$vaga->id.'"><button type="button" class="btn btn-danger">Excluir</button></a>
+                                <a href="excluir.php?id='.$produto->id.'"><button type="button" class="btn btn-danger">Excluir</button></a>
                             </td>
                         <tr>';
     }
 
     $resultados = strlen($resultados) ? $resultados : '<tr>
                                                             <td colspan="6" class="text-center">
-                                                            Nenhuma vaga encontrada
+                                                            Nenhum produto encontrado
                                                             </td>
                                                             </tr>';
 
@@ -42,7 +42,7 @@
     <?=$mensagem?>
     <section>
         <a href="cadastrar.php">
-            <button class="btn btn-success">Nova vaga</button>
+            <button class="btn btn-success">Novo produto</button>
         </a>
     </section>
 

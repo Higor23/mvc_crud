@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Db\Database;
 use \PDO;
 
-class Vaga
+class Produto
 {
     /**
      * Identificador único do produto
@@ -82,7 +82,7 @@ class Vaga
     }
 
     /**
-     * Método responsável por excluir a vaga do banco
+     * Método responsável por excluir a produto do banco
      * @return bollean
      * 
      */
@@ -92,31 +92,30 @@ class Vaga
         return (new Database('produtos'))->delete('id = ' . $this->id);
     }
 
-
     /**
-     * O método é static porque vai retornar várias intâncias de vagas, 
+     * O método é static porque vai retornar várias intâncias de produtos, 
      * mas no momento da consulta, necessita somente do response.
      * 
-     * Método para listagem de vagas
+     * Método para listagem de produtos
      * @param string $where
      * @param $order
      * @param $limit
      * @return array
      */
-    public static function getVagas($where = null, $order = null, $limit = null)
+    public static function getProdutos($where = null, $order = null, $limit = null)
     {
         return (new Database('produtos'))->select($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS, self::class);
     }
 
     /**
-     * O método é static porque vai retornar várias intâncias de vagas, 
+     * O método é static porque vai retornar várias intâncias de produtos, 
      * mas no momento da consulta, necessita somente do response.
      * 
-     * Método responsável por buscar uma vaga com base em seu id
+     * Método responsável por buscar uma produto com base em seu id
      * @param integer $id
-     * @return Vaga
+     * @return produto
      */
-    public static function getVaga($id)
+    public static function getProduto($id)
     {
         return (new Database('produtos'))->select('id = ' . $id)->fetchObject(self::class);
     }

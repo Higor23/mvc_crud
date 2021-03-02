@@ -11,16 +11,16 @@
 
         <div class="form-group">
             <label for="">Nome do Produto</label>
-            <input type="text" class="form-control" name="nome" value="<?= $obVaga->nome ?>">
+            <input type="text" class="form-control" name="nome" value="<?= $obProduto->nome ?>">
         </div>
         <div class="form-group">
             <label for="">Preço</label>
-            <input type="text" class="form-control" name="preco" value="<?= $obVaga->preco ?>">
+            <input type="text" class="form-control" name="preco" value="<?= $obProduto->preco ?>">
         </div>
 
         <div class="form-group">
             <label for="">Descrição</label>
-            <textarea class="form-control" id="" cols="30" rows="10" name="descricao"><?= $obVaga->descricao ?></textarea>
+            <textarea class="form-control" id="" cols="30" rows="10" name="descricao"><?= $obProduto->descricao ?></textarea>
         </div>
 
         <div class="form-group">
@@ -35,7 +35,7 @@
                 </div>
                 <div class="form-check form-check-inline">
                     <label for="" class="form-control">
-                        <input type="radio" name="status" value="n" <?= $obVaga->status == 'n' ? 'checked' : '' ?>> Inativo
+                        <input type="radio" name="status" value="n" <?= $obProduto->status == 'n' ? 'checked' : '' ?>> Inativo
                     </label>
                 </div>
                 <div>
