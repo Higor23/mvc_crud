@@ -11,177 +11,178 @@ class Vaga
      * Identificador único do produto
      * @var integer
      */
-    private $id;
+    public $id;
 
     /**
      * Nome do Produto
      * @var string
      */
-    private $nome;
+    public $nome;
 
     /**
      * Descrição do produto
      * @var string
      */
-    private $descricao;
+    public $descricao;
 
     /**
      * Preço do produto
      * @var double
      */
-    private $preco;
+    public $preco;
 
     /**
      * Define se o produto está ativo
      * @var string(s/n) 
      */
-    private $status;
+    public $status;
 
     /** 
      * Data de publicação do produto
      * @var string
      */
-    private $data;
+    public $data;
 
-    /**
-     * Nome do arquivo sem extensão
-     * @@var string
-     */
-    private $name;
+    // /**
+    //  * Nome do arquivo sem extensão
+    //  * @@var string
+    //  */
+    // public $name;
 
-    /**
-     * Extensão do arquivo (sem ponto)
-     * @var string
-     */
-    private $extension;
+    // /**
+    //  * Extensão do arquivo (sem ponto)
+    //  * @var string
+    //  */
+    // public $extension;
 
-    /**
-     * Tipo do arquivo
-     * @@var string
-     */
-    private $type;
+    // /**
+    //  * Tipo do arquivo
+    //  * @@var string
+    //  */
+    // public $type;
 
-    /**
-     * Nome temporário/caminho do arquivo
-     * @var string
-     */
-    private $tmpName;
+    // /**
+    //  * Nome temporário/caminho do arquivo
+    //  * @var string
+    //  */
+    // public $tmpName;
 
-    /**
-     * Código de erro do upload
-     * @@var integer
-     */
-    private $error;
+    // /**
+    //  * Código de erro do upload
+    //  * @@var integer
+    //  */
+    // public $error;
 
-    /**
-     * Tamanho do arquivo
-     * @@var string
-     */
-    private $size;
-
-
-    /**
-     * Conatdor de duplicação de arquivo
-     * @@var integer
-     */
-    private $duplicates = 0;
-
-    /**
-     * Método responsável por cadastrar o produto
-     * @return boolean
-     */
-    public function __construct($file, $descricao, $nome, $preco, $status)
-    {
-        $this->type = $file['type'];
-        $this->tmpName = $file['tmp_name'];
-        $this->error = $file['error'];
-        $this->size = $file['size'];
-
-        $info = pathinfo($file['name']);
-        $this->name = $info['filename'];
-        $this->extension = $info['extension'];
-
-        $this->nome = $nome;
-        $this->descricao = $descricao;
-        $this->preco = $preco;
-        $this->status = $status;
-    }
-
-    public function generateNewName() {
-        $this->name = time().'-'.rand(100000,999999).'-'.uniqid();
-    }
+    // /**
+    //  * Tamanho do arquivo
+    //  * @@var string
+    //  */
+    // public $size;
 
 
-    /**
-     * Método responsável por alterar o nome possível para o arquivo
-     * @param string $name
-     * @param boolean $overwrite
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-    }
+    // /**
+    //  * Conatdor de duplicação de arquivo
+    //  * @@var integer
+    //  */
+    // public $duplicates = 0;
 
-    /**
-     * Método responsável por obter o nome possível para o arquivo
-     * @param string $dir
-     * @param boolean $overwrite
-     * @return boolean
-     */
-    private function getPossibleBasename($dir, $overwrite)
-    {
-        //SOBRESCREVER ARQUIVO
-        if ($overwrite) return $this->getBaseName();
+    // /**
+    //  * Método responsável por cadastrar o produto
+    //  * @return boolean
+    //  */
+    // // public function __construct($file = null, $descricao = null, $nome = null, $preco = null, $status = null)
+    // // {
+    // //     if(is_array($file)){
+    // //     $this->type = $file['type'];
+    // //     $this->tmpName = $file['tmp_name'];
+    // //     $this->error = $file['error'];
+    // //     $this->size = $file['size'];
 
-        //NÃO PODE SOBRESCERVER
-        $basename = $this->getBasename();
+    // //     $info = pathinfo($file['name']);
+    // //     $this->name = $info['filename'];
+    // //     $this->extension = $info['extension'];
+    // //     }
+    // //     $this->nome = $nome ?? null;
+    // //     $this->descricao = $descricao ?? null;
+    // //     $this->preco = $preco ?? null;
+    // //     $this->status = $status ?? null;
+    // // }
 
-        //VERIFICAR DUPLICAÇÃO
-        if (!file_exists($dir . '/' . $basename)) {
-            return $basename;
-        }
+    // public function generateNewName() {
+    //     $this->name = time().'-'.rand(100000,999999).'-'.uniqid();
+    // }
 
-        //INCREMENTAR DUPLICAÇÕES
-        $this->duplicates++;
 
-        //RETORNO O PRÓPRIO MÉTODO
-        return $this->getPossibleBasename($dir, $overwrite);
-    }
+    // /**
+    //  * Método responsável por alterar o nome possível para o arquivo
+    //  * @param string $name
+    //  * @param boolean $overwrite
+    //  */
+    // public function setName($name)
+    // {
+    //     $this->name = $name;
+    // }
 
-    /**
-     * Método responsável por retornar o arquivo com sua extensão
-     * @param string $dir
-     * @return string
-     */
-    public function getBaseName()
-    {
-        //VALIDA EXTENSÃO 
-        $extension = strlen($this->extension) ? '.' . $this->extension : '';
+    // /**
+    //  * Método responsável por obter o nome possível para o arquivo
+    //  * @param string $dir
+    //  * @param boolean $overwrite
+    //  * @return boolean
+    //  */
+    // private function getPossibleBasename($dir, $overwrite)
+    // {
+    //     //SOBRESCREVER ARQUIVO
+    //     if ($overwrite) return $this->getBaseName();
 
-        //VALIDA DUPLICAÇÃO
-        $duplicates = $this->duplicates > 0 ? '-' . $this->duplicates : '';
+    //     //NÃO PODE SOBRESCERVER
+    //     $basename = $this->getBasename();
 
-        //RETORNA O NOME COMPLETO
-        return $this->name . $duplicates . $extension;
-    }
+    //     //VERIFICAR DUPLICAÇÃO
+    //     if (!file_exists($dir . '/' . $basename)) {
+    //         return $basename;
+    //     }
 
-    /**
-     * Método responsável por mover o arquivo de upload
-     * @param string $dir
-     * @param boolean $overwrite
-     * @return boolean
-     */
-    public function upload($dir, $overwrite = true)
-    {
-        if ($this->error != 0) return false;
+    //     //INCREMENTAR DUPLICAÇÕES
+    //     $this->duplicates++;
 
-        //CAMINHO COMPLETO DE DESTINO
-        $path = $dir . '/' . $this->getPossibleBasename($dir, $overwrite);
-        // echo "<pre>"; print_r($path); echo "</pre>"; exit;
+    //     //RETORNO O PRÓPRIO MÉTODO
+    //     return $this->getPossibleBasename($dir, $overwrite);
+    // }
 
-        //MOVE O ARQUIVO PARA A PASTA DE DESTINO
-        return move_uploaded_file($this->tmpName, $path);
-    }
+    // /**
+    //  * Método responsável por retornar o arquivo com sua extensão
+    //  * @param string $dir
+    //  * @return string
+    //  */
+    // public function getBaseName()
+    // {
+    //     //VALIDA EXTENSÃO 
+    //     $extension = strlen($this->extension) ? '.' . $this->extension : '';
+
+    //     //VALIDA DUPLICAÇÃO
+    //     $duplicates = $this->duplicates > 0 ? '-' . $this->duplicates : '';
+
+    //     //RETORNA O NOME COMPLETO
+    //     return $this->name . $duplicates . $extension;
+    // }
+
+    // /**
+    //  * Método responsável por mover o arquivo de upload
+    //  * @param string $dir
+    //  * @param boolean $overwrite
+    //  * @return boolean
+    //  */
+    // public function upload($dir, $overwrite = true)
+    // {
+    //     if ($this->error != 0) return false;
+
+    //     //CAMINHO COMPLETO DE DESTINO
+    //     $path = $dir . '/' . $this->getPossibleBasename($dir, $overwrite);
+    //     // echo "<pre>"; print_r($path); echo "</pre>"; exit;
+
+    //     //MOVE O ARQUIVO PARA A PASTA DE DESTINO
+    //     return move_uploaded_file($this->tmpName, $path);
+    // }
 
     public function cadastrar()
     {
@@ -197,7 +198,7 @@ class Vaga
             'preco' => $this->preco,
             'status' => $this->status,
             'data' => $this->data,
-            'imagem' => $this->name
+            'imagem' => $this->imagem
         ]);
         // echo "<pre>"; print_r($this); echo "</pre>"; exit;
 
@@ -207,7 +208,7 @@ class Vaga
 
     /**
      * Método responsável por atualizar o produto no banco
-     * @return bollean
+     * @return boolean
      */
     public function atualizar()
     {

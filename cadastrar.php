@@ -1,42 +1,57 @@
 <?php
-
+// ini_set('display_errors',true);
+// error_reporting(E_ALL);
 require __DIR__ . '/vendor/autoload.php';
 
 define('TITLE', 'Cadastrar Produto');
 
 use \App\Entity\Vaga;
+use \App\Entity\Upload;
 
-// $obVaga = new Vaga;
+//INSTÂNCIA DO PRODUTO
+$obVaga = new Vaga;
+
 
 //Validação do POST
-if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'], $_FILES['imagem'])) {
+if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'])) {
 
     //INSTÂNCIA DE UPLOAD E CADASTRO
-    $obVaga = new Vaga($_FILES['imagem'], $_POST['descricao'], $_POST['nome'], $_POST['preco'], $_POST['status']);
+    // $obVaga = new Vaga();
+
+    //DADOS
+    $obVaga->nome    = $_POST['nome'];
+    $obVaga->descricao  = $_POST['descricao'];
+    $obVaga->preco  = $_POST['preco'];
+    $obVaga->status     = $_POST['status'];
+    $obVaga->imagem    = '';
+
+    if (isset($_FILES['imagem'])) {
+
+        $obUpload = new Upload($_FILES['imagem']);
+    
+    }
 
     //ALTERA O NOME DO ARQUIVO
     // $obVaga->setName('novo-arquivo-com-nome-alterado');
 
-    $obVaga->generateNewName();
+    $obUpload->generateNewName();
 
     //MOVE OS ARQUIVOS DE UPLOAD
-    $sucesso = $obVaga->upload(__DIR__ . '/files', false);
-    // echo "<pre>"; print_r($obVaga); echo "</pre>"; exit;
+    $sucesso = $obUpload->upload(__DIR__ . '/files', false);
+    $obVaga->imagem    = $obUpload->name;
+    // echo "<pre>";
+    // print_r($obVaga);
+    // echo "</pre>";
+    // exit;
     if ($sucesso) {
         // echo 'Arquivo '.$obVaga->getBasename().' enviado com sucesso!';
+        
         $obVaga->cadastrar();
         header('location: index.php?status=success');
         exit();
     }
 
     die('Problema ao enviar o arquivo');
-    //DADOS
-    // $obVaga->nome    = $_POST['nome'];
-    // $obVaga->descricao  = $_POST['descricao'];
-    // $obVaga->preco  = $_POST['preco'];
-    // $obVaga->status     = $_POST['status'];
-    // $obVaga->imagem    = $_FILES['imagem']['name'];
-    // echo "<pre>"; print_r($obVaga); echo "</pre>"; exit;
 
 }
 
