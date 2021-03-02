@@ -98,7 +98,8 @@ class Vaga
             'descricao' => $this->descricao,
             'preco' => $this->preco,
             'status' => $this->status,
-            'data' => $this->data
+            'data' => $this->data,
+            'imagem' => $this->nome
         ]);
         // echo "<pre>"; print_r($this); echo "</pre>"; exit;
 

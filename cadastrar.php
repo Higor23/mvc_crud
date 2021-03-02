@@ -2,15 +2,15 @@
 
 require __DIR__ . '/vendor/autoload.php';
 
-define('TITLE', 'Cadastrar vaga');
+define('TITLE', 'Cadastrar Produto');
 
 use \App\Entity\Vaga;
 
 $obVaga = new Vaga;
 
 //Validação do POST
-// if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'], $_FILES['imagem'])) {
-if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'])) {
+if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'], $_FILES['imagem'])) {
+// if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco'])) {
     // if (isset($_FILES['imagem'])) {
     // echo "<pre>"; print_r($_FILES); echo "</pre>"; exit;
     
@@ -20,7 +20,8 @@ if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco']
     $obVaga->descricao  = $_POST['descricao'];
     $obVaga->preco  = $_POST['preco'];
     $obVaga->status     = $_POST['status'];
-    // echo "<pre>"; print_r($obVaga); echo "</pre>"; exit;
+    $obVaga->imagem    = $_FILES['imagem']['name'];
+    echo "<pre>"; print_r($obVaga); echo "</pre>"; exit;
     $obVaga->cadastrar();
 
     header('location: index.php?status=success');
