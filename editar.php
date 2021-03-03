@@ -52,6 +52,6 @@ if (isset($_POST['nome'], $_POST['descricao'], $_POST['status'], $_POST['preco']
     die('Problema ao enviar o arquivo');
 }
 
-include __DIR__ . '/includes/header.php';
-include __DIR__ . '/includes/formulario.php';
-include __DIR__ . '/includes/footer.php';
+include __DIR__ . '/views/header.php';
+include __DIR__ . '/views/formulario.php';
+include __DIR__ . '/views/footer.php';

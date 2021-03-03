@@ -9,6 +9,6 @@ $produtos = Produto::getProdutos();
 
 // echo "<pre>"; print_r($vagas); echo "</pre>"; exit;
 
-include __DIR__.'/includes/header.php';
-include __DIR__.'/includes/listagem-produtos.php';
-include __DIR__.'/includes/footer.php';
+include __DIR__.'/views/header.php';
+include __DIR__.'/views/listagem-produtos.php';
+include __DIR__.'/views/footer.php';
